@@ -7,47 +7,74 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+### Installation
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Clone the Repository
+   git clone <repository-url>
+   cd <repository-name>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. Copy the Environment File
+   - Duplicate the .env.example file to create a .env file:
+   cp .env.example .env
+   - Update the .env file with your database credentials and other configurations (e.g., DB_DATABASE, DB_USERNAME, DB_PASSWORD).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3. Install Dependencies
+   - Install PHP dependencies via Composer:
+   composer install
+   - Install frontend dependencies via NPM:
+   npm install
 
-## Learning Laravel
+4. Generate Application Key
+   - Run the following command to generate a unique application key:
+   php artisan key:generate
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+5. Run Migrations
+   - Migrate the database to create the necessary tables:
+   php artisan migrate
+   - (Optional) Seed the database with test data if you have a seeder:
+   php artisan db:seed
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Running the Application
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Using Laravel Herd:
+  - If you're using Laravel Herd, you don’t need to run a separate server. Herd automatically serves your Laravel app based on the project directory. Access it via the site URL assigned by Herd (e.g., http://<project-name>.test instead of localhost). Check Herd's dashboard to confirm the URL.
+  - Note: localhost won’t work directly with Herd unless you manually configure it to point to the project. The URL is user-specific and depends on your Herd setup.
 
-## Laravel Sponsors
+- Alternative (Manual Server):
+  - If not using Herd, start the built-in PHP development server:
+  php artisan serve
+  - Access the app at http://localhost:8000.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Compile Assets:
+  - Run the following command to compile your frontend assets (CSS/JS):
+  npm run dev
+  - For development with auto-reloading, use:
+  npm run watch
 
-### Premium Partners
+### Testing the Application
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. Verify Installation
+   - Open your browser and navigate to the Herd URL (e.g., http://<project-name>.test) or http://localhost:8000 (if using php artisan serve).
+   - You should see the Laravel welcome page or your app’s homepage.
+
+2. Test Routes and Features
+   - Check key routes (e.g., /kasir, /transaksi) to ensure they load without errors.
+   - Test the search functionality on the Kasir, Barang, and Transaksi pages by entering sample values.
+   - Add items to the cart on the Kasir page and click "Bayar" to ensure the transaction saves correctly.
+
+3. Database Interaction
+   - Verify that migrations created the transaksi, barang, and detail_transaksi tables.
+   - Check the database for new records after a successful checkout.
+
+4. Troubleshooting
+   - If you encounter errors, check the Laravel log file (storage/logs/laravel.log) or your browser’s console.
+   - Ensure all environment variables in .env are correctly set.
+
+### Additional Notes
+- For Herd users, the site URL is automatically generated based on your project name (e.g., myapp.test). Update your .env APP_URL to match if needed.
+- Run php artisan optimize after migrations to clear and re-optimize the configuration cache.
+
+Happy coding with Laravel!
 
 ## Contributing
 
